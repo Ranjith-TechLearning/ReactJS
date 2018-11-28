@@ -2,12 +2,16 @@ console.log("App.js is running");
 
 let appObject = {
   title: "Indecision App",
-  subTitle: "Put your life in the hands of a Computer"
+  subTitle: "Put your life in the hands of a Computer",
+  options: ["One", "two"]
 };
+
 let template = (
   <div>
     <h1> {appObject.title}</h1>
-    <p>{appObject.subTitle} </p>
+    {appObject.subTitle && <p>{appObject.subTitle} </p>}
+
+    {appObject.options.length > 1 ? <p>Here are your options</p> : "No options"}
     <ol>
       <li>Item one</li>
       <li>Item two</li>
@@ -34,4 +38,4 @@ let templateChallenge = (
 );
 
 let appElement = document.getElementById("app");
-ReactDOM.render(templateChallenge, appElement);
+ReactDOM.render(template, appElement);

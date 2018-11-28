@@ -4,8 +4,10 @@ console.log("App.js is running");
 
 var appObject = {
   title: "Indecision App",
-  subTitle: "Put your life in the hands of a Computer"
+  subTitle: "Put your life in the hands of a Computer",
+  options: ["One", "two"]
 };
+
 var template = React.createElement(
   "div",
   null,
@@ -15,12 +17,17 @@ var template = React.createElement(
     " ",
     appObject.title
   ),
-  React.createElement(
+  appObject.subTitle && React.createElement(
     "p",
     null,
     appObject.subTitle,
     " "
   ),
+  appObject.options.length > 1 ? React.createElement(
+    "p",
+    null,
+    "Here are your options"
+  ) : "No options",
   React.createElement(
     "ol",
     null,
@@ -70,4 +77,4 @@ var templateChallenge = React.createElement(
 );
 
 var appElement = document.getElementById("app");
-ReactDOM.render(templateChallenge, appElement);
+ReactDOM.render(template, appElement);
