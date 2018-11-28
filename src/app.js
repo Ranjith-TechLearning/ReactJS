@@ -16,16 +16,22 @@ let template = (
 );
 let user = {
   name: "Ranjith Ramalingam",
-  age: "27",
-  location: "Renton"
+  age: 19,
+  location: "Seattle"
 };
+
+function getLocation(location) {
+  if (location) return <p>Location : {location}</p>;
+  else return "unknow";
+}
+
 let templateChallenge = (
   <div>
-    <h1>{user.name.toUpperCase() + "!"}</h1>
-    <p>Age: {user.age} </p>
-    <p>Location: {user.location}</p>
+    <h1>{user.name ? user.name : "Not Known"}</h1>
+    {user.age >= 18 && <p>Age: {user.age} </p>}
+    {getLocation(user.location)}
   </div>
 );
 
 let appElement = document.getElementById("app");
-ReactDOM.render(template, appElement);
+ReactDOM.render(templateChallenge, appElement);

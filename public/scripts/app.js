@@ -38,31 +38,36 @@ var template = React.createElement(
 );
 var user = {
   name: "Ranjith Ramalingam",
-  age: "27",
-  location: "Renton"
+  age: 19,
+  location: "Seattle"
 };
+
+function getLocation(location) {
+  if (location) return React.createElement(
+    "p",
+    null,
+    "Location : ",
+    location
+  );else return "unknow";
+}
+
 var templateChallenge = React.createElement(
   "div",
   null,
   React.createElement(
     "h1",
     null,
-    user.name.toUpperCase() + "!"
+    user.name ? user.name : "Not Known"
   ),
-  React.createElement(
+  user.age >= 18 && React.createElement(
     "p",
     null,
     "Age: ",
     user.age,
     " "
   ),
-  React.createElement(
-    "p",
-    null,
-    "Location: ",
-    user.location
-  )
+  getLocation(user.location)
 );
 
 var appElement = document.getElementById("app");
-ReactDOM.render(template, appElement);
+ReactDOM.render(templateChallenge, appElement);
