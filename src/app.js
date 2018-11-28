@@ -1,12 +1,12 @@
 console.log("App.js is running");
 
-let appObject = {
+const appObject = {
   title: "Indecision App",
   subTitle: "Put your life in the hands of a Computer",
   options: ["One", "two"]
 };
 
-let template = (
+const template = (
   <div>
     <h1> {appObject.title}</h1>
     {appObject.subTitle && <p>{appObject.subTitle} </p>}
@@ -18,7 +18,7 @@ let template = (
     </ol>
   </div>
 );
-let user = {
+const user = {
   name: "Ranjith Ramalingam",
   age: 19,
   location: "Seattle"
@@ -29,7 +29,7 @@ function getLocation(location) {
   else return "unknow";
 }
 
-let templateChallenge = (
+const templateChallenge = (
   <div>
     <h1>{user.name ? user.name : "Not Known"}</h1>
     {user.age >= 18 && <p>Age: {user.age} </p>}
@@ -37,5 +37,5 @@ let templateChallenge = (
   </div>
 );
 
-let appElement = document.getElementById("app");
+const appElement = document.getElementById("app");
 ReactDOM.render(template, appElement);
