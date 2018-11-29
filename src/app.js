@@ -39,8 +39,9 @@ const renderPage = () => {
       )}
       <p>{appObject.options.length}</p>
       <ol>
-        <li>Item one</li>
-        <li>Item two</li>
+        {appObject.options.map(arr => (
+          <li key={arr}>{arr}</li>
+        ))}
       </ol>
       <button onClick={onremoveAll}> Remove All</button>
       <form onSubmit={onFormSubmit}>

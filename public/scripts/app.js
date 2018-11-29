@@ -57,16 +57,13 @@ var renderPage = function renderPage() {
     React.createElement(
       "ol",
       null,
-      React.createElement(
-        "li",
-        null,
-        "Item one"
-      ),
-      React.createElement(
-        "li",
-        null,
-        "Item two"
-      )
+      appObject.options.map(function (arr) {
+        return React.createElement(
+          "li",
+          { key: arr },
+          arr
+        );
+      })
     ),
     React.createElement(
       "button",
