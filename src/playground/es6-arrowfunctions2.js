@@ -29,8 +29,7 @@ const multiplier = {
   number: [10, 20, 30],
   muliplyBy: 10,
   multiply() {
-    const multipliedValues = this.number.map(x => x * this.muliplyBy);
-    return multipliedValues;
+    return this.number.map(x => x * this.muliplyBy);
   }
 };
 console.log(multiplier.multiply());
