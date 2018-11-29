@@ -75,43 +75,50 @@ var templateChallenge = React.createElement(
   ),
   getLocation(user.location)
 );
+var count = 0;
 var addOne = function addOne() {
-  console.log("add one");
+  count = count + 1;
+  counterRenderer();
 };
 var minusOne = function minusOne() {
-  console.log("minus One");
+  count = count - 1;
+  counterRenderer();
 };
 var reset = function reset() {
-  console.log("reset");
+  count = 0;
+  counterRenderer();
 };
-var count = 0;
-var templateTwo = React.createElement(
-  "div",
-  null,
-  React.createElement(
-    "h1",
-    null,
-    "Count : ",
-    count
-  ),
-  React.createElement(
-    "button",
-    { onClick: addOne },
-    "+1"
-  ),
-  React.createElement("p", null),
-  React.createElement(
-    "button",
-    { onClick: minusOne },
-    "-1"
-  ),
-  React.createElement("p", null),
-  React.createElement(
-    "button",
-    { onClick: reset },
-    "Reset"
-  )
-);
 
 var appElement = document.getElementById("app");
-ReactDOM.render(templateTwo, appElement);
+
+var counterRenderer = function counterRenderer() {
+  var templateTwo = React.createElement(
+    "div",
+    null,
+    React.createElement(
+      "h1",
+      null,
+      "Count : ",
+      count
+    ),
+    React.createElement(
+      "button",
+      { onClick: addOne },
+      "+1"
+    ),
+    React.createElement("p", null),
+    React.createElement(
+      "button",
+      { onClick: minusOne },
+      "-1"
+    ),
+    React.createElement("p", null),
+    React.createElement(
+      "button",
+      { onClick: reset },
+      "Reset"
+    )
+  );
+  ReactDOM.render(templateTwo, appElement);
+};
+counterRenderer();

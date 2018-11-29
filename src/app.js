@@ -36,26 +36,33 @@ const templateChallenge = (
     {getLocation(user.location)}
   </div>
 );
+let count = 0;
 const addOne = () => {
-  console.log("add one");
+  count = count + 1;
+  counterRenderer();
 };
 const minusOne = () => {
-  console.log("minus One");
+  count = count - 1;
+  counterRenderer();
 };
 const reset = () => {
-  console.log("reset");
+  count = 0;
+  counterRenderer();
 };
-let count = 0;
-const templateTwo = (
-  <div>
-    <h1>Count : {count}</h1>
-    <button onClick={addOne}>+1</button>
-    <p />
-    <button onClick={minusOne}>-1</button>
-    <p />
-    <button onClick={reset}>Reset</button>
-  </div>
-);
 
 const appElement = document.getElementById("app");
-ReactDOM.render(templateTwo, appElement);
+
+const counterRenderer = () => {
+  const templateTwo = (
+    <div>
+      <h1>Count : {count}</h1>
+      <button onClick={addOne}>+1</button>
+      <p />
+      <button onClick={minusOne}>-1</button>
+      <p />
+      <button onClick={reset}>Reset</button>
+    </div>
+  );
+  ReactDOM.render(templateTwo, appElement);
+};
+counterRenderer();
