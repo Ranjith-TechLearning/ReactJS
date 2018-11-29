@@ -5,120 +5,85 @@ console.log("App.js is running");
 var appObject = {
   title: "Indecision App",
   subTitle: "Put your life in the hands of a Computer",
-  options: ["One", "two"]
+  options: []
 };
 
-var template = React.createElement(
-  "div",
-  null,
-  React.createElement(
-    "h1",
-    null,
-    " ",
-    appObject.title
-  ),
-  appObject.subTitle && React.createElement(
-    "p",
-    null,
-    appObject.subTitle,
-    " "
-  ),
-  appObject.options.length > 1 ? React.createElement(
-    "p",
-    null,
-    "Here are your options"
-  ) : "No options",
-  React.createElement(
-    "ol",
-    null,
-    React.createElement(
-      "li",
-      null,
-      "Item one"
-    ),
-    React.createElement(
-      "li",
-      null,
-      "Item two"
-    )
-  )
-);
-var user = {
-  name: "Ranjith Ramalingam",
-  age: 19,
-  location: "Seattle"
+var onFormSubmit = function onFormSubmit(e) {
+  e.preventDefault();
+  console.log("Form Submitted!");
+  var option = e.target.elements.option.value;
+  console.log(option);
+  if (option) {
+    appObject.options.push(option);
+    e.target.elements.option.value = "";
+    renderPage();
+  }
+  console.log(appObject.options);
 };
 
-function getLocation(location) {
-  if (location) return React.createElement(
-    "p",
-    null,
-    "Location : ",
-    location
-  );else return "unknow";
-}
-
-var templateChallenge = React.createElement(
-  "div",
-  null,
-  React.createElement(
-    "h1",
-    null,
-    user.name ? user.name : "Not Known"
-  ),
-  user.age >= 18 && React.createElement(
-    "p",
-    null,
-    "Age: ",
-    user.age,
-    " "
-  ),
-  getLocation(user.location)
-);
-var count = 0;
-var addOne = function addOne() {
-  count = count + 1;
-  counterRenderer();
-};
-var minusOne = function minusOne() {
-  count = count - 1;
-  counterRenderer();
-};
-var reset = function reset() {
-  count = 0;
-  counterRenderer();
+var onremoveAll = function onremoveAll(e) {
+  appObject.options = [];
+  renderPage();
 };
 
 var appElement = document.getElementById("app");
 
-var counterRenderer = function counterRenderer() {
-  var templateTwo = React.createElement(
+var renderPage = function renderPage() {
+  var template = React.createElement(
     "div",
     null,
     React.createElement(
       "h1",
       null,
-      "Count : ",
-      count
+      " ",
+      appObject.title
+    ),
+    appObject.subTitle && React.createElement(
+      "p",
+      null,
+      appObject.subTitle,
+      " "
+    ),
+    appObject.options.length > 0 ? React.createElement(
+      "p",
+      null,
+      "Here are your options"
+    ) : "No options",
+    React.createElement(
+      "p",
+      null,
+      appObject.options.length
+    ),
+    React.createElement(
+      "ol",
+      null,
+      React.createElement(
+        "li",
+        null,
+        "Item one"
+      ),
+      React.createElement(
+        "li",
+        null,
+        "Item two"
+      )
     ),
     React.createElement(
       "button",
-      { onClick: addOne },
-      "+1"
+      { onClick: onremoveAll },
+      " Remove All"
     ),
-    React.createElement("p", null),
     React.createElement(
-      "button",
-      { onClick: minusOne },
-      "-1"
-    ),
-    React.createElement("p", null),
-    React.createElement(
-      "button",
-      { onClick: reset },
-      "Reset"
+      "form",
+      { onSubmit: onFormSubmit },
+      React.createElement("input", { type: "text", name: "option" }),
+      React.createElement(
+        "button",
+        null,
+        "Add Option "
+      )
     )
   );
-  ReactDOM.render(templateTwo, appElement);
+  ReactDOM.render(template, appElement);
 };
-counterRenderer();
+renderPage();
