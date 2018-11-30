@@ -1,5 +1,3 @@
-console.log("App.js is running");
-
 class Counter extends React.Component {
   constructor(props) {
     super(props);
@@ -9,6 +7,25 @@ class Counter extends React.Component {
     this.state = {
       count: 0
     };
+  }
+  componentDidUpdate(prevProps, prevState) {
+    console.log("hello..");
+    if (prevState.count !== this.state.count) {
+      console.log("hello. count not is not equal.");
+      localStorage.setItem("count", this.state.count);
+    }
+  }
+
+  componentDidMount() {
+    console.log("hello..componentDidMount");
+    const stringCount = localStorage.getItem("count");
+    console.log("stringCount", stringCount);
+
+    const count = parseInt(stringCount, 10);
+    console.log("countlocal", count);
+    if (!isNaN(count)) {
+      this.setState(() => ({ count }));
+    }
   }
   handleAddOne() {
     this.setState(prevState => {
